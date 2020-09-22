@@ -4,15 +4,35 @@
             <div class="campaigns">
                 <div class="campaigns__title">Мои Кампании:</div>
             
-                <Campaign v-for="campaign in campaigns"
+                <CampaignPlate v-for="campaign in campaigns"
                     :key="campaign.id"
                     :campaignId="campaign.id" 
                     :name="campaign.name"
-                    :isActive="activeCampaign === campaign.id ? true : false"
+                    :isActive="activeCampaignId === campaign.id ? true : false"
                     
                     @setActiveCampaign="setActiveCampaign" 
                     
                     ref="campaign{{key}}"/>
+            </div>
+
+            <div class="gameContent">
+                <div class="places">
+                    <PlacePlate v-for="place in places"
+                        :key="place.id"
+                        :placeId="place.id" 
+                        :name="place.name"
+                        :desc="place.desc"
+
+                        :isActive="activePlaceId === place.id ? true : false"
+                    
+                        @setActivePlace="setActivePlace" 
+                        
+                        ref="place{{key}}"/>
+                </div>
+
+                <div class="characters">
+                    
+                </div>
             </div>
 
 
@@ -28,13 +48,30 @@
         data() {
             return {
                 campaigns: this.$store.getters.getCampaigns,
+                activeCampaignId: null,
                 activeCampaign: null,
+                places: null,
+                activePlaceId: null,
             }
         },
         methods: {
             setActiveCampaign(id) {
-                this.activeCampaign = id;
-                console.log(id)
+                this.activeCampaignId = id;
+                this.activeCampaign = this.campaigns.filter(item => item.id == this.activeCampaignId)[0];
+
+                this.findPlacesInCampaign(this.activeCampaign);
+                
+                this.setActivePlace(null);
+
+                console.log(id);
+            },
+
+            findPlacesInCampaign(campaign) {
+                this.places = campaign.locations;
+            },
+
+            setActivePlace(id) {
+                this.activePlaceId = id;
             }
         }
     };
@@ -67,10 +104,12 @@
         max-width: 1200px;
 
         background-color: wheat;
+
+        display: flex;
     }
 
     .campaigns {
-        max-width: 202px;
+        min-width: 202px;
 
         box-sizing: border-box;
         border-right: 2px solid coral;
@@ -87,6 +126,16 @@
         padding-left: 10px;
         padding-top: 20px;
         padding-bottom: 20px;
+    }
+
+    .gameContent {
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+    .places {
+        display: flex;
+        flex-wrap: wrap;
     }
 
 </style>

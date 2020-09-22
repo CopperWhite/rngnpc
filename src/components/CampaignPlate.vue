@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'Campaign',
+        name: 'CampaignPlate',
         props: {
             name: String,
             campaignId: Number,

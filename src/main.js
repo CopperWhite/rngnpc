@@ -6,10 +6,11 @@ Vue.config.productionTip = false
 
 //Components
 
-import Campaign from './components/Campaign'
-Vue.component('Campaign', Campaign);
+import CampaignPlate from './components/CampaignPlate'
+Vue.component('CampaignPlate', CampaignPlate);
 
-
+import PlacePlate from './components/PlacePlate'
+Vue.component('PlacePlate', PlacePlate);
 
 //End Components
 
