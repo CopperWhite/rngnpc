@@ -1,6 +1,6 @@
 <template>
    <div class="place" @click="setActive" :class="{ active: isActive }">
-       {{name}}
+       {{ name }}
    </div>
 </template>
 

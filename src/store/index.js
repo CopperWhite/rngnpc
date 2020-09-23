@@ -13,20 +13,20 @@ export default new Vuex.Store({
                     {
                         id: 0,
                         race: 0,
-                        sex: 0,
+                        sex: 'Мужчина',
                         fname: 'Джон',
                         lname: 'Доу',
                         desc: 'Самый обычный человек. Скорее всего, трактирщик. Характер стойкий, нордический. Не женат.',
-                        location: 0,
+                        location: 1,
                     },
                     {
                         id: 1,
                         race: 1,
-                        sex: 0,
+                        sex: 'Мужчина',
                         fname: 'Ауст',
                         lname: 'Найло (Ночной бриз)',
                         desc: 'Самый обычный эльф. Скорее всего, колдун. Характер стойкий, нордический. Не женат.',
-                        location: 1,
+                        location: 0,
                     },
                 ],
                 locations: [
@@ -50,20 +50,11 @@ export default new Vuex.Store({
                     {
                         id: 0,
                         race: 0,
-                        sex: 0,
+                        sex: 'Мужчина',
                         fname: 'Джон',
                         lname: 'Доу',
                         desc: 'Самый обычный человек. Скорее всего, трактирщик. Характер стойкий, нордический. Не женат.',
                         location: 0,
-                    },
-                    {
-                        id: 1,
-                        race: 1,
-                        sex: 0,
-                        fname: 'Ауст',
-                        lname: 'Найло (Ночной бриз)',
-                        desc: 'Самый обычный эльф. Скорее всего, колдун. Характер стойкий, нордический. Не женат.',
-                        location: 1,
                     },
                 ],
                 locations: [
@@ -109,9 +100,14 @@ export default new Vuex.Store({
         getCampaigns(state) {
             return state.campaigns;
         },
-        // getFirstCampaign(state) {
-        //     return state.campaigns[0].id;
-        // }
+        getRaceName: state => raceId => {
+            return state.races.filter(item => item.id == raceId)[0].name;
+        },
+        getLocationName: state => (campaignId, locationId) => {
+            let locations = state.campaigns.filter(item => item.id == campaignId)[0].locations;
+            return locations.filter(loc => loc.id == locationId)[0].name;
+        }
+        
     },
     modules: {
         

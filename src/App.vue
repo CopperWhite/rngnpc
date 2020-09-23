@@ -4,8 +4,8 @@
             <div class="campaigns">
                 <div class="campaigns__title">Мои Кампании:</div>
             
-                <CampaignPlate v-for="campaign in campaigns"
-                    :key="campaign.id"
+                <CampaignPlate v-for="(campaign, index) in campaigns"
+                    :key="index"
                     :campaignId="campaign.id" 
                     :name="campaign.name"
                     :isActive="activeCampaignId === campaign.id ? true : false"
@@ -17,8 +17,8 @@
 
             <div class="gameContent">
                 <div class="places">
-                    <PlacePlate v-for="place in places"
-                        :key="place.id"
+                    <PlacePlate v-for="(place, index) in places"
+                        :key="index"
                         :placeId="place.id" 
                         :name="place.name"
                         :desc="place.desc"
@@ -31,7 +31,18 @@
                 </div>
 
                 <div class="characters">
-                    
+                    <CharacterPlate v-for="(character, index) in charactersSort"
+                        :key="index"
+                        :campaignId="activeCampaignId"
+                        :id="character.id"
+                        :raceId="character.race"
+                        :sex="character.sex"
+                        :fname="character.fname"
+                        :lname="character.lname"
+                        :desc="character.desc"
+                        :location="getCharacterLocationName(character.location)"
+                        
+                        ref="character{{key}}"/>
                 </div>
             </div>
 
@@ -52,8 +63,15 @@
                 activeCampaign: null,
                 places: null,
                 activePlaceId: null,
+                characters: null,
+                charactersSort: null,
             }
         },
+
+        computed: {
+            
+        },
+
         methods: {
             setActiveCampaign(id) {
                 this.activeCampaignId = id;
@@ -63,7 +81,9 @@
                 
                 this.setActivePlace(null);
 
-                console.log(id);
+                this.selectAllCharacters();
+
+                console.log(this.activeCampaignId);
             },
 
             findPlacesInCampaign(campaign) {
@@ -72,6 +92,15 @@
 
             setActivePlace(id) {
                 this.activePlaceId = id;
+            },
+
+            selectAllCharacters() {
+                this.characters = this.activeCampaign.npcs;
+                this.charactersSort = this.characters;
+            },
+
+            getCharacterLocationName(locationId) {
+                return this.$store.getters.getLocationName(this.activeCampaignId, locationId);
             }
         }
     };
@@ -130,12 +159,32 @@
 
     .gameContent {
         box-sizing: border-box;
-        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        width: 100%;
     }
 
     .places {
         display: flex;
         flex-wrap: wrap;
+
+        width: 100%;
+
+        box-sizing: border-box;
+        padding-right: 20px;
+        padding-left: 20px;
+        border-bottom: 2px solid coral;
+
+        min-height: 44px;
+    }
+
+    .characters {
+        width: 100%;
+
+        box-sizing: border-box;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 
 </style>
