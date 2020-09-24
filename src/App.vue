@@ -13,6 +13,10 @@
                     @setActiveCampaign="setActiveCampaign" 
                     
                     ref="campaign{{key}}"/>
+
+                <div class="campaignAdd"></div>
+
+                <CampaignAdd @addNewCampaign="addNewCampaign"/>
             </div>
 
             <div class="gameContent">
@@ -101,6 +105,10 @@
 
             getCharacterLocationName(locationId) {
                 return this.$store.getters.getLocationName(this.activeCampaignId, locationId);
+            },
+
+            addNewCampaign(campaignName) {
+                this.$store.commit('addCampaign', campaignName);
             }
         }
     };

@@ -9,6 +9,9 @@ Vue.config.productionTip = false
 import CampaignPlate from './components/CampaignPlate'
 Vue.component('CampaignPlate', CampaignPlate);
 
+import CampaignAdd from './components/CampaignAdd'
+Vue.component('CampaignAdd', CampaignAdd);
+
 import PlacePlate from './components/PlacePlate'
 Vue.component('PlacePlate', PlacePlate);
 
