@@ -90,7 +90,7 @@ export default new Vuex.Store({
         lastCampaignId: 1,
     },
     actions: {
-
+        
     },
     mutations: {
         addCampaign(state, newCampaignName) {
@@ -107,6 +107,19 @@ export default new Vuex.Store({
                 });
     
                 state.lastCampaignId++;
+            }
+        },
+
+        addLocation(state, payload) {
+            if (payload.name != '') {
+
+                let places = state.campaigns.filter(item => item.id == payload.campaignId)[0].locations;
+
+                places.push({
+                    id: places.length,
+                    name: payload.name,
+                    desc: payload.desc,
+                })
             }
         }
     },

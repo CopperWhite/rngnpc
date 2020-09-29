@@ -21,6 +21,11 @@
 
             <div class="gameContent">
                 <div class="places">
+                    <PlaceAdd v-if="activeCampaignId != null"
+                        @addNewLocation="addNewLocation"
+
+                        />
+
                     <PlacePlate v-for="(place, index) in places"
                         :key="index"
                         :placeId="place.id" 
@@ -109,6 +114,10 @@
 
             addNewCampaign(campaignName) {
                 this.$store.commit('addCampaign', campaignName);
+            },
+
+            addNewLocation(payload) {
+                this.$store.commit('addLocation', { campaignId: this.activeCampaignId, name: payload.name, desc: payload.desc });
             }
         }
     };

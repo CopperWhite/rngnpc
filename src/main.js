@@ -15,6 +15,9 @@ Vue.component('CampaignAdd', CampaignAdd);
 import PlacePlate from './components/PlacePlate'
 Vue.component('PlacePlate', PlacePlate);
 
+import PlaceAdd from './components/PlaceAdd'
+Vue.component('PlaceAdd', PlaceAdd);
+
 import CharacterPlate from './components/CharacterPlate'
 Vue.component('CharacterPlate', CharacterPlate);
 
