@@ -7,36 +7,34 @@
                 <div class="characterAdd__form_title">Локация:</div>
 
                 <select v-model="charLocation">
-                    <option v-for="place in places" value="place.id" :key="place.id">{{place.name}}</option>
+                    <option v-for="place in places" :value="place.id" :key="place.id">{{place.name}}</option>
                 </select>
+            </div>
+
+            <div class="characterAdd__form_randomButton">
+                Заполнить случайно: 
+
+                <DiceButton @click.native="fillRandom" />
             </div>
             
             <div class="characterAdd__form_field">
                 <div class="characterAdd__form_title">Раса:</div>
 
-                <input v-model="charRace" type="text" placeholder="">
-
-                <DiceButton @click.native="fillRandomRace" />
+                <input v-model="charRace" type="text">
             </div>
 
             <div class="characterAdd__form_field">
                 <div class="characterAdd__form_title">Пол:</div>
 
-                <select v-model="charSex">
-                    <option value="0">Мужчина</option>
-                    <option value="1">Женщина</option>
-                    <option value="2">Другое</option>
-                </select>
-                
-                <DiceButton @click.native="fillRandomSex"/>
+                <input v-model="charSex" type="text">
+
+
             </div>
             
             <div class="characterAdd__form_field">
                 <div class="characterAdd__form_title">Имя:</div>
 
-                <input v-model="charName" type="text" placeholder="">
-
-                <DiceButton @click.native="fillRandomName"/>
+                <input v-model="charName" type="text">
             </div>
             
 
@@ -66,7 +64,7 @@
             return {
                isOpened: false,
                charName: '',
-               charLocation: '',
+               charLocation: null,
                charSex: null,
                charRace: '',
                charDesc: '',
@@ -80,8 +78,8 @@
 
             cancelCharacterCreation() {
                 this.charName = "";
-                this.charLocation = "";
-                this.charSex = null;
+                this.charLocation = null;
+                this.charSex = "";
                 this.charRace = "";
                 this.charDesc = "";
                 this.chosenRace = null;
@@ -89,31 +87,35 @@
                 this.isOpened = false;
             },
 
-            fillRandomRace() {
+            fillRandom() {
+
                 let races = this.races;
+
                 this.chosenRace = races[Math.floor(Math.random() * races.length)];
-                this.charRace = this.chosenRace.name;
-            },
 
-            fillRandomSex() {
                 let sex = Math.floor(Math.random() * 2);
-                this.charSex = sex;
-            },
-
-            fillRandomName() {
 
                 let fname;
 
-                if (this.charSex == 0) {
+                if (sex == 0) {
                     fname = this.chosenRace.maleFnames[Math.floor(Math.random() * this.chosenRace.maleFnames.length)];
-                } else if (this.charSex == 1) {
+                } else if (sex == 1) {
                     fname = this.chosenRace.femaleFnames[Math.floor(Math.random() * this.chosenRace.femaleFnames.length)];
                 }
 
                 let lname = this.chosenRace.lnames[Math.floor(Math.random() * this.chosenRace.lnames.length)];
 
+                this.charRace = this.chosenRace.name;
+
+                if (sex == 0) {
+                    this.charSex = 'Мужчина';
+                } else if (sex == 1) {
+                    this.charSex = 'Женщина';
+                }
+
                 this.charName = fname + ' ' + lname;
             }
+
         }
     };
 </script>
@@ -122,6 +124,13 @@
 
     .characterAdd {
         margin-top: 20px;
+    }
+
+    .characterAdd__form_randomButton {
+        display: flex;
+        align-items: center;
+
+        margin-top: 10px;
     }
 
     .characterAdd__button-open {
