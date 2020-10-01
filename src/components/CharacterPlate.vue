@@ -1,6 +1,6 @@
 <template>
    <div class="character">
-       Имя: {{ fname }} {{ lname }} <br/>
+       Имя: {{ name }}<br/>
        Раса: {{ race }} <br/>
        Локация: {{ location }} <br/>
        Пол: {{ sex }} <br/>
@@ -17,8 +17,7 @@
             id: Number,
             raceId: Number,
             sex: String,
-            fname: String,
-            lname: String,
+            name: String,
             desc: String,
             location: String
         },

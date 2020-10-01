@@ -1,7 +1,7 @@
 <template>
    <div class="locationAdd">
        <input type="text" v-model="locationName" class="locationAdd__input" placeholder="Имя новой локации">
-       <button @click="addNewLocation" class="locationAdd__button">Создать</button>
+       <button @click="addNewLocation" class="locationAdd__button btn-ok">Создать</button>
        <textarea class="locationAdd__textarea" :class="{ opened: locationName != '' }" cols="30" rows="10" v-model="locationDesc" placeholder="Описание локации"></textarea>
    </div>
 </template>
@@ -49,9 +49,8 @@
     } 
 
     .locationAdd__button {
+        min-height: 32px;
         height: 32px;
-        background-color: turquoise;
-        border-color: coral;
     }
 
     .locationAdd__textarea {

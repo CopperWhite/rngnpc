@@ -21,6 +21,12 @@ Vue.component('PlaceAdd', PlaceAdd);
 import CharacterPlate from './components/CharacterPlate'
 Vue.component('CharacterPlate', CharacterPlate);
 
+import CharacterAdd from './components/CharacterAdd'
+Vue.component('CharacterAdd', CharacterAdd);
+
+import DiceButton from './components/DiceButton'
+Vue.component('DiceButton', DiceButton);
+
 //End Components
 
 new Vue({

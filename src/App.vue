@@ -40,14 +40,19 @@
                 </div>
 
                 <div class="characters">
+                    <CharacterAdd v-if="activeCampaignId != null"
+                        :places="places"
+                        :races="this.$store.getters.getRaces"
+                        ref="characterConstructor"
+                    />
+
                     <CharacterPlate v-for="(character, index) in charactersSort"
                         :key="index"
                         :campaignId="activeCampaignId"
                         :id="character.id"
                         :raceId="character.race"
                         :sex="character.sex"
-                        :fname="character.fname"
-                        :lname="character.lname"
+                        :name="character.name"
                         :desc="character.desc"
                         :location="getCharacterLocationName(character.location)"
                         
@@ -91,6 +96,8 @@
                 this.setActivePlace(null);
 
                 this.selectAllCharacters();
+
+                this.$refs.characterConstructor.cancelCharacterCreation();
 
                 console.log(this.activeCampaignId);
             },
@@ -204,4 +211,30 @@
         padding-left: 20px;
     }
 
+</style>
+
+<style>
+    .btn-ok {
+        min-height: 44px;
+        background-color: turquoise;
+        border-color: coral;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-cancel {
+        min-height: 44px;
+        background-color: coral;
+        border-color: coral;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
