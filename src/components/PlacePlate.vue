@@ -48,7 +48,7 @@
         color: coral;
         border-color: coral;
 
-        pointer-events: none;
+        /* pointer-events: none; */
     }
 
 </style>

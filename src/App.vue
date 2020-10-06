@@ -94,10 +94,10 @@
                 this.activeCampaign = this.campaigns.filter(item => item.id == this.activeCampaignId)[0];
 
                 this.findPlacesInCampaign(this.activeCampaign);
-                
-                this.setActivePlace(null);
 
                 this.selectAllCharacters();
+
+                this.setActivePlace(null);
 
                 this.$refs.characterConstructor.cancelCharacterCreation();
 
@@ -109,12 +109,30 @@
             },
 
             setActivePlace(id) {
-                this.activePlaceId = id;
+                if (this.activePlaceId == id) {
+
+                    this.activePlaceId = null;
+                    this.selectAllCharacters();
+
+                } else {
+                    this.activePlaceId = id;
+
+                    this.findCharactersByLocation(id);
+                }
+                
             },
 
             selectAllCharacters() {
                 this.characters = this.activeCampaign.npcs;
                 this.charactersSort = this.characters;
+            },
+
+            findCharactersByLocation(locationId) {
+                if (locationId != null) {
+                    this.charactersSort = this.characters.filter(item => item.location == locationId);
+                } else {
+                    this.selectAllCharacters();
+                }
             },
 
             getCharacterLocationName(locationId) {
@@ -138,7 +156,9 @@
                     charRace: payload.race,
                     charSex: payload.sex,
                     charDesc: payload.desc,
-                })
+                });
+
+                this.findCharactersByLocation(this.activePlaceId);
             }
         }
     };
