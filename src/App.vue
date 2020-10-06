@@ -44,13 +44,15 @@
                         :places="places"
                         :races="this.$store.getters.getRaces"
                         ref="characterConstructor"
+
+                        @addNewCharacter="addNewCharacter"
                     />
 
                     <CharacterPlate v-for="(character, index) in charactersSort"
                         :key="index"
                         :campaignId="activeCampaignId"
                         :id="character.id"
-                        :raceId="character.race"
+                        :race="character.race"
                         :sex="character.sex"
                         :name="character.name"
                         :desc="character.desc"
@@ -125,6 +127,18 @@
 
             addNewLocation(payload) {
                 this.$store.commit('addLocation', { campaignId: this.activeCampaignId, name: payload.name, desc: payload.desc });
+            },
+
+            addNewCharacter(payload) {
+                this.$store.commit('addCharacter', { 
+                    campaignId: this.activeCampaignId,
+
+                    charLocation: payload.location,
+                    charName: payload.name,
+                    charRace: payload.race,
+                    charSex: payload.sex,
+                    charDesc: payload.desc,
+                })
             }
         }
     };

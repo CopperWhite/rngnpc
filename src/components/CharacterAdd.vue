@@ -46,7 +46,7 @@
 
             <div class="characterAdd__form_buttons">
                 <button class="characterAdd__form_buttons_item btn-cancel" @click="cancelCharacterCreation">Отмена</button>
-                <button class="characterAdd__form_buttons_item btn-ok">Сохранить</button>
+                <button class="characterAdd__form_buttons_item btn-ok" @click="createCharacter">Сохранить</button>
             </div>
             
        </div>
@@ -85,6 +85,20 @@
                 this.chosenRace = null;
 
                 this.isOpened = false;
+            },
+
+            createCharacter() {
+                let payload = {
+                    location: this.charLocation,
+                    name: this.charName,
+                    race: this.charRace,
+                    sex: this.charSex,
+                    desc: this.charDesc,
+                };
+                
+                this.$emit('addNewCharacter', payload);
+
+                this.cancelCharacterCreation();
             },
 
             fillRandom() {

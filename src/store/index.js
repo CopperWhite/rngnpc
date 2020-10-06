@@ -12,7 +12,7 @@ export default new Vuex.Store({
                 npcs: [
                     {
                         id: 0,
-                        race: 0,
+                        race: 'Человек',
                         sex: 'Мужчина',
                         name: 'Джон Доу',
                         desc: 'Самый обычный человек. Скорее всего, трактирщик. Характер стойкий, нордический. Не женат.',
@@ -20,7 +20,7 @@ export default new Vuex.Store({
                     },
                     {
                         id: 1,
-                        race: 1,
+                        race: 'Эльф',
                         sex: 'Мужчина',
                         name: 'Ауст Найло (Ночной бриз)',
                         desc: 'Самый обычный эльф. Скорее всего, колдун. Характер стойкий, нордический. Не женат.',
@@ -47,7 +47,7 @@ export default new Vuex.Store({
                 npcs: [
                     {
                         id: 0,
-                        race: 0,
+                        race: 'Человек',
                         sex: 'Мужчина',
                         name: 'Джон Доу',
                         desc: 'Самый обычный человек. Скорее всего, трактирщик. Характер стойкий, нордический. Не женат.',
@@ -118,6 +118,21 @@ export default new Vuex.Store({
                     desc: payload.desc,
                 })
             }
+        },
+
+        addCharacter(state, payload) {
+            let campaign = state.campaigns.filter(item => item.id == payload.campaignId)[0];
+
+            let character = {
+                id: campaign.npcs.length + 1,
+                race: payload.charRace,
+                sex: payload.charSex,
+                name: payload.charName,
+                desc: payload.charDesc,
+                location: payload.charLocation,
+            }
+
+            campaign.npcs.push(character);
         }
     },
     getters: {

@@ -15,7 +15,7 @@
         props: {
             campaignId: Number,
             id: Number,
-            raceId: Number,
+            race: String,
             sex: String,
             name: String,
             desc: String,
@@ -23,7 +23,7 @@
         },
         data() {
             return {
-                race: this.$store.getters.getRaceName(this.raceId),
+                
             }
         },
         methods: {
