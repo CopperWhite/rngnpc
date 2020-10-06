@@ -11,7 +11,8 @@
                     :isActive="activeCampaignId === campaign.id ? true : false"
                     
                     @setActiveCampaign="setActiveCampaign" 
-                    
+                    @removeCampaign="removeCampaign"
+
                     ref="campaign{{key}}"/>
 
                 <div class="campaignAdd"></div>
@@ -141,6 +142,20 @@
 
             addNewCampaign(campaignName) {
                 this.$store.commit('addCampaign', campaignName);
+            },
+
+            removeCampaign(campaignId) {
+
+                let campaignName = this.campaigns.filter(item => item.id == campaignId)[0].name;
+
+                if (confirm("Вы уверены что хотите удалить кампанию " + campaignName)) {
+                    // Save it!
+                    this.$store.commit('deleteCampaign', campaignId);
+                } else {
+                    // Do nothing!
+                    
+                }
+                
             },
 
             addNewLocation(payload) {

@@ -107,6 +107,10 @@ export default new Vuex.Store({
             }
         },
 
+        deleteCampaign(state, id) {
+            state.campaigns.splice(state.campaigns.findIndex(item => item.id === id), 1);
+        },
+
         addLocation(state, payload) {
             if (payload.name != '') {
 
