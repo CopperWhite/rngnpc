@@ -137,6 +137,12 @@ export default new Vuex.Store({
             }
 
             campaign.npcs.push(character);
+        },
+
+        deleteCharacter(state, payload) {
+            let campaign = state.campaigns.filter(item => item.id == payload.campaignId)[0];
+
+            campaign.npcs.splice(campaign.npcs.findIndex(item => item.id === payload.characterId), 1);
         }
     },
     getters: {

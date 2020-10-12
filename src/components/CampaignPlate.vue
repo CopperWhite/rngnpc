@@ -16,7 +16,6 @@
 			>
 				<g>
 					<path
-						style="fill: #030104"
 						d="M21.125,0H4.875C2.182,0,0,2.182,0,4.875v16.25C0,23.818,2.182,26,4.875,26h16.25
 												C23.818,26,26,23.818,26,21.125V4.875C26,2.182,23.818,0,21.125,0z M18.78,17.394l-1.388,1.387c-0.254,0.255-0.67,0.255-0.924,0
 												L13,15.313L9.533,18.78c-0.255,0.255-0.67,0.255-0.925-0.002L7.22,17.394c-0.253-0.256-0.253-0.669,0-0.926l3.468-3.467
@@ -71,8 +70,8 @@ export default {
 
 .campaign__remove {
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 5px;
+	right: 5px;
 
 	width: 20px;
 	height: 20px;
@@ -83,5 +82,15 @@ export default {
 .campaign__remove svg {
 	width: 20px;
 	height: 20px;
+}
+
+.campaign__remove path {
+    transition: 0.5s;
+    fill: black;
+}
+
+.campaign__remove:hover path {
+    fill: red;
+    transition: 0.5s;
 }
 </style>

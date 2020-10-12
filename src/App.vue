@@ -59,6 +59,8 @@
                         :desc="character.desc"
                         :location="getCharacterLocationName(character.location)"
                         
+                        @removeCharacter="removeCharacter"
+
                         ref="character{{key}}"/>
                 </div>
             </div>
@@ -174,6 +176,20 @@
                 });
 
                 this.findCharactersByLocation(this.activePlaceId);
+            },
+
+            removeCharacter(id) {
+
+                let characterName = this.characters.filter(item => item.id == id)[0].name;
+
+                if (confirm("Вы уверены что хотите удалить персонажа " + characterName)) {
+                    // Save it!
+                    this.$store.commit('deleteCharacter', { campaignId: this.activeCampaignId, characterId: id });
+                } else {
+                    // Do nothing!
+                    
+                }
+                
             }
         }
     };
