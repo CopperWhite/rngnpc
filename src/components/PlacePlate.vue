@@ -1,7 +1,7 @@
 <template>
-   <div class="place" @click="setActive" :class="{ active: isActive }">
-       {{ name }}
-   </div>
+    <div class="place" @click="setActive" :class="{ active: isActive }">
+        {{ name }}
+    </div>
 </template>
 
 <script>

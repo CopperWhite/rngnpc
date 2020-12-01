@@ -1,15 +1,15 @@
 <template>
-   <div class="campaignAdd">
-       <div v-if="inputsShown == false" class="campaignAdd__button">
-           <button @click="showCampaignInput" class="btn-ok">Создать кампанию</button>
-       </div>
+    <div class="campaignAdd">
+            <div v-if="inputsShown == false" class="campaignAdd__button">
+                <button @click="showCampaignInput" class="btn-ok">Создать кампанию</button>
+            </div>
 
-       <div v-if="inputsShown == true" class="campaignAdd__form">
-           <input v-model="campaignName" type="text" class="campaignAdd__form_input">
-           <button @click="addNewCampaign" class="campaignAdd__form_input-commit btn-ok">Создать кампанию</button>
-           <button @click="cancelCampaignCreation" class="campaignAdd__form_input-cancel btn-cancel">Отмена</button>
-       </div>
-   </div>
+            <div v-if="inputsShown == true" class="campaignAdd__form">
+                <input v-model="campaignName" type="text" class="campaignAdd__form_input">
+                <button @click="addNewCampaign" class="campaignAdd__form_input-commit btn-ok">Создать кампанию</button>
+                <button @click="cancelCampaignCreation" class="campaignAdd__form_input-cancel btn-cancel">Отмена</button>
+            </div>
+    </div>
 </template>
 
 <script>

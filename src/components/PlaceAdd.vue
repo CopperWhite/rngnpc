@@ -1,9 +1,9 @@
 <template>
-   <div class="locationAdd">
-       <input type="text" v-model="locationName" class="locationAdd__input" placeholder="Имя новой локации">
-       <button @click="addNewLocation" class="locationAdd__button btn-ok">Создать</button>
-       <textarea class="locationAdd__textarea" :class="{ opened: locationName != '' }" cols="30" rows="10" v-model="locationDesc" placeholder="Описание локации"></textarea>
-   </div>
+    <div class="locationAdd">
+            <input type="text" v-model="locationName" class="locationAdd__input" placeholder="Имя новой локации">
+            <button @click="addNewLocation" class="locationAdd__button btn-ok">Создать</button>
+            <textarea class="locationAdd__textarea" :class="{ opened: locationName != '' }" cols="30" rows="10" v-model="locationDesc" placeholder="Описание локации"></textarea>
+    </div>
 </template>
 
 <script>

@@ -65,7 +65,6 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 </template>
@@ -113,13 +112,10 @@
 
             setActivePlace(id) {
                 if (this.activePlaceId == id) {
-
                     this.activePlaceId = null;
                     this.selectAllCharacters();
-
                 } else {
                     this.activePlaceId = id;
-
                     this.findCharactersByLocation(id);
                 }
                 
@@ -151,11 +147,7 @@
                 let campaignName = this.campaigns.filter(item => item.id == campaignId)[0].name;
 
                 if (confirm("Вы уверены что хотите удалить кампанию " + campaignName)) {
-                    // Save it!
                     this.$store.commit('deleteCampaign', campaignId);
-                } else {
-                    // Do nothing!
-                    
                 }
                 
             },
@@ -183,14 +175,12 @@
                 let characterName = this.characters.filter(item => item.id == id)[0].name;
 
                 if (confirm("Вы уверены что хотите удалить персонажа " + characterName)) {
-                    // Save it!
                     this.$store.commit('deleteCharacter', { campaignId: this.activeCampaignId, characterId: id });
-                } else {
-                    // Do nothing!
-                    
                 }
                 
-            }
+            },
+
+
         }
     };
 </script>
